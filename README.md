@@ -27,7 +27,7 @@ iptables -C INPUT -m set --match-set blocked_ips src -j DROP 2>/dev/null || ipta
 ```
 **3.** Clone `honeypot`
 ```bash
-cd /root && git clone git@github.com:krot3232/honeypot.git && cd honeypot
+cd /root && git clone https://github.com/krot3232/honeypot.git && cd honeypot
 ```
 **4.** Move all your service ports to non-standard ports, and set up a `honeypot` in their place.  
 **5.** Run `systemd` honeypot.service:
