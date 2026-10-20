@@ -1,0 +1,15 @@
+[Unit]
+Description=Honeypot Service
+Documentation=https://github.com/krot3232/honeypot
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/honeypot
+ExecStart=/root/honeypot/honeypot.sh "1/null,22/ssh,2222/ssh,3389/rdp,1023/null,65535/null" block_ip 60
+Restart=always
+RestartSec=5
+User=root
+
+[Install]
+WantedBy=multi-user.target
