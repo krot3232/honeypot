@@ -10,6 +10,7 @@ A simple Bash script that uses socat to catch port scanners and automatically ba
 * **Flexible Modes:** Supports both dry-run logging and active IP blocking modes.
 * **Low Overhead:** Native Linux tools ensure minimal CPU and memory usage.
 ## Install
+**1.** Install the packages:
 ```bash
 apt install ipset socat
 ```
@@ -19,12 +20,45 @@ socat -V | head -n 1
 iptables -V
 ipset -v
 ```
-Configure iptables:
+**2.** Configure `iptables`:
 ```bash
 ipset create blocked_ips hash:ip timeout 60 -exist
 iptables -C INPUT -m set --match-set blocked_ips src -j DROP 2>/dev/null || iptables -I INPUT -m set --match-set blocked_ips src -j DROP
 ```
+**3.** Clone `honeypot`
+```bash
+cd /root && git clone git@github.com:krot3232/honeypot.git && cd honeypot
+```
+**4.** Move all your service ports to non-standard ports, and set up a `honeypot` in their place.
+**5.** Run `systemd` honeypot.service:
+
+Edit `honeypot.service`, add open ports for a `honeypot`, change the IP ban duration (default is `60` seconds). 
+```bash
+nano honeypot.service
+cp honeypot.service /etc/systemd/system/honeypot.service
+systemctl daemon-reload
+systemctl start honeypot
+systemctl enable honeypot
+``` 
+or using `nohup` examples:
+```bash
+nohup ./honeypot.sh "5432/postgresql,6379/redis" add_log honeypot.log &
+nohup ./honeypot.sh 22/ssh,2222-2224/ssh add_log honeypot.log &
+
+nohup ./honeypot.sh "1/null,22/ssh,2222/ssh,3389/rdp,1023/null,65535/null" block_ip 60 &
+```
+
+See logs here `/var/log/honeypot.log`
+> [!WARNING]
+> Be careful with the block duration; you could end up locking yourself out if you attempt to establish a connection to a port where a honeypot is set up.
+
 ## Example
+```bash
+./honeypot.sh <PORT>/<SERVICE> <SCRIPT> <SCRIPT_PARAM>
+```
+`<PORT>` - one port `22` or ranges of ports `1-25`, `<SERVICE>` - name service in the directory [echo](https://github.com/krot3232/honeypot/tree/main/echo), `<SCRIPT>` - block_ip or add_log, `<SCRIPT_PARAM>` - lockout duration in seconds or name log file  
+`<PORT>/<SERVICE>` - <PORT>/<SERVICE> can be specified multiple times, separated by commas.
+
 ### Logging
 Logging to a file without IP-based blocking:
 ```bash
@@ -35,8 +69,8 @@ IP address blocking for `120` seconds, with an entry recorded in the log file `h
 ```bash
 ./honeypot.sh 22/ssh,2222/ssh,3389/rdp,80/http block_ip 120
 ```
-
 ---
+
 ## Useful commands
 All blocked IP addresses:
 ```bash
@@ -57,4 +91,8 @@ ipset del blocked_ips 192.168.1.100
 Unblock all IP:
 ```bash
 ipset flush blocked_ips
+```
+Nmap port scan:
+```bash
+nmap -sV -p $PORT -n -Pn --open $IP
 ```
