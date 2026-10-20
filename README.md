@@ -57,7 +57,7 @@ See logs here `/var/log/honeypot.log`
 ./honeypot.sh <PORT>/<SERVICE> <SCRIPT> <SCRIPT_PARAM>
 ```
 `<PORT>` - one port `22` or ranges of ports `1-25`, `<SERVICE>` - name service in the directory [echo](https://github.com/krot3232/honeypot/tree/main/echo), `<SCRIPT>` - block_ip or add_log, `<SCRIPT_PARAM>` - lockout duration in seconds or name log file  
-`<PORT>/<SERVICE>` - <PORT>/<SERVICE> can be specified multiple times, separated by commas.
+`<PORT>/<SERVICE>` - can be specified multiple times, separated by commas.
 
 ### Logging
 Logging to a file without IP-based blocking:
