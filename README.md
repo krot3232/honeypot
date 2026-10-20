@@ -24,7 +24,7 @@ Logging to a file without IP-based blocking:
 ./honeypot.sh 22/ssh,2222/ssh add_log honeypot.log
 ```
 ### Block IP
-IP address blocking for 120 seconds, with an entry recorded in the log file `honeypot.log`:
+IP address blocking for `120` seconds, with an entry recorded in the log file `honeypot.log`:
 ```bash
 ./honeypot.sh 22/ssh,2222/ssh,3389/rdp,80/http block_ip 120
 ```
