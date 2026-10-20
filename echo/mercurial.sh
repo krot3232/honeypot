@@ -1,0 +1,2 @@
+#!/bin/bash
+echo -e "HTTP/1.1 200 Script output follows\r\nServer: BaseHTTP/0.6 Python/3.11.2\r\nContent-Type: text/html\r\n\r\n<html><head><title>Mercurial repositories index</title></head><body></body></html>"

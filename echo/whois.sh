@@ -1,0 +1,2 @@
+#!/bin/bash
+echo -e -n "WHOIS LIMIT EXCEEDED - SEE WWW.PIR.ORG/WHOIS FOR DETAILS\n"
