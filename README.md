@@ -12,7 +12,12 @@ A simple Bash script that uses socat to catch port scanners and automatically ba
 ## Install
 **1.** Install the packages:
 ```bash
-apt install ipset socat
+# Debian / Ubuntu / Linux Mint
+apt install ipset socat -y
+# RHEL / CentOS / Rocky Linux / AlmaLinux / Fedora
+dnf install ipset socat -y
+# CentOS 7
+yum install ipset socat -y
 ```
 Installation check:
 ```bash
