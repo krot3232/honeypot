@@ -29,7 +29,7 @@ iptables -C INPUT -m set --match-set blocked_ips src -j DROP 2>/dev/null || ipta
 ```bash
 cd /root && git clone git@github.com:krot3232/honeypot.git && cd honeypot
 ```
-**4.** Move all your service ports to non-standard ports, and set up a `honeypot` in their place.
+**4.** Move all your service ports to non-standard ports, and set up a `honeypot` in their place.  
 **5.** Run `systemd` honeypot.service:
 
 Edit `honeypot.service`, add open ports for a `honeypot`, change the IP ban duration (default is `60` seconds). 
