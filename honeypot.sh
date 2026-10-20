@@ -44,7 +44,7 @@ for ITEM in "${SERVICES[@]}"; do
 	SERVICE="${ITEM#*/}"
 	SCRIPT1="./echo/${SERVICE}.sh"
 	for PORT1 in $(seq "$PORT_START" "$PORT_END"); do
-		socat -T30 \
+		socat -T1 \
 			TCP4-LISTEN:${PORT1},reuseaddr,fork,max-children=64,backlog=128 \
 			EXEC:"/bin/sh -c '${SCRIPT1}&&./${SCRIPT2}'",nofork &
 		PID=$!
