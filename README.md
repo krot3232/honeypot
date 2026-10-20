@@ -4,6 +4,11 @@
 A simple Bash script that uses socat to catch port scanners and automatically bans their IPs
 
 [![!#/bin/bash](https://img.shields.io/badge/-%23!%2Fbin%2Fbash-1f425f.svg?style=flat-square&logo=gnubash&logoColor=white)](https://www.gnu.org/software/bash/)
+## Features
+* **Real-time Detection:** Catches unauthorized port scans instantly using `socat`.
+* **Automated Banning:** Leverages `ipset` for high-performance IP blocking with custom timeouts.
+* **Flexible Modes:** Supports both dry-run logging and active IP blocking modes.
+* **Low Overhead:** Native Linux tools ensure minimal CPU and memory usage.
 ## Install
 ```bash
 apt install ipset socat
