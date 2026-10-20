@@ -49,3 +49,7 @@ Unblock IP:
 ```bash
 ipset del blocked_ips 192.168.1.100
 ```
+Unblock all IP:
+```bash
+ipset flush blocked_ips
+```
