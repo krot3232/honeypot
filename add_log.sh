@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 NOW=$(date '+%Y-%m-%d %H:%M:%S')
 IP="${SOCAT_PEERADDR:-unknown}"
 PORT="${SOCAT_SOCKPORT:-unknown}"
