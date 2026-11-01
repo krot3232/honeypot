@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Start honeypot
 # Usage: ./honeypot.sh <PORT>/<SERVICE> <SCRIPT> <SCRIPT_PARAM>
 # Example: ./honeypot.sh 1/dnsix,22/ssh,2222/ssh,3389/rdp,1023/rsh,65535/mercurial block_ip 3600
